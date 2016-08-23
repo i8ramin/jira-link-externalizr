@@ -1,7 +1,7 @@
 chrome.extension.sendMessage({}, function(response) {
-	var readyStateCheckInterval = setInterval(function() {
-  	if (document.readyState === "complete") {
-  		clearInterval(readyStateCheckInterval);
+  var readyStateCheckInterval = setInterval(function() {
+    if (document.readyState === "complete") {
+      clearInterval(readyStateCheckInterval);
 
       var externalLinks = document.querySelectorAll('a[href^="https://"]:not([href*="atlassian"])');
 
@@ -9,6 +9,6 @@ chrome.extension.sendMessage({}, function(response) {
         link.setAttribute('target', '_blank');
         console.warn('Set target="_blank" on', link);
       });
-  	}
-	}, 10);
+    }
+  }, 10);
 });
