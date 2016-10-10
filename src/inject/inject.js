@@ -3,11 +3,9 @@ chrome.extension.sendMessage({}, function(response) {
     if (document.readyState === "complete") {
       clearInterval(readyStateCheckInterval);
 
-      var externalLinks = document.querySelectorAll('a[href^="https://"]:not([href*="atlassian"])');
-
-      externalLinks.forEach(function (link) {
+      delegate(document, 'a[href^="https://"]:not([href*="we.co"]):not([href*="atlassian.com"])', 'click', function(e) {
+        var link = e.target;
         link.setAttribute('target', '_blank');
-        console.warn('Set target="_blank" on', link);
       });
     }
   }, 10);
