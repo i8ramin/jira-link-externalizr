@@ -1,6 +1,6 @@
 {
   "name": "JIRA Link Externalizr",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "This extension makes external links open in a new tab in JIRA",
   "homepage_url": "https://jira.we.co",
