@@ -3,14 +3,25 @@ chrome.extension.sendMessage({}, function(response) {
     if (document.readyState === "complete") {
       clearInterval(readyStateCheckInterval);
 
-      console.info("[jira-link-externalizer] loaded...");
+      // open external links in a new tab
+      delegate(
+        document,
+        'a[href^="https://"]:not([href*="we.co"]):not([href*="atlassian.com"])',
+        'click',
+        function(e) {
+          e.target.setAttribute('target', '_blank');
+        }
+      );
 
-      delegate(document, 'a[href^="https://"]:not([href*="we.co"]):not([href*="atlassian.com"])', 'click', function(e) {
-        var link = e.target;
-        link.setAttribute('target', '_blank');
-
-        console.info("[jira-link-externalizer]", link);
-      });
+      // close modal when clicked outside of it
+      delegate(
+        document,
+        'div[class*="aui-blanket"]',
+        'click',
+        function(e) {
+          document.getElementById('aui-dialog-close').click();
+        }
+      );
     }
   }, 10);
 });
